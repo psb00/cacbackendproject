@@ -1,0 +1,36 @@
+{{>layouts/header}}
+
+
+{{#article}}
+<form class="container" action="/article/update" method="post" enctype="multipart/form-data" >
+    <input name = "id" type="hidden" value="{{id}}">
+    <div class="mb-3">
+        <label class="form-label">제목</label>
+        <input type="text" class="form-control" name="title" value="{{title}}">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">내용</label>
+        <textarea class="form-control" rows="3" name="content">{{content}}</textarea>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">파일 첨부</label>
+        <input type="file" name="fileData">
+    </div>
+    <div>
+        <button type="submit" class="btn btn-sm btn-primary" id="btnSave">저장</button>
+        <button onclick="location.href='/'" type="button" class="btn btn-sm btn-primary" id="btnList">목록</button>
+    </div>
+</form>
+
+<a href="/article/{{id}}" class="btn btn-primary" >메인페이지로</a>
+
+
+
+
+{{/article}}
+
+
+
+
+
+{{>layouts/footer}}
