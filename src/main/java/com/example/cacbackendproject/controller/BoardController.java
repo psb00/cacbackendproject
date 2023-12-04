@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -77,5 +78,18 @@ public class BoardController {
         return "redirect:/article/" + cacArticleEntity.getId();
     }
 
+    @GetMapping("/article/{id}/delete")
+    public String delete(@PathVariable(name = "id") Long id, RedirectAttributes msg){
+
+
+        CacArticle cacArticleEntity = cacArticleRepository.findById(id).orElse(null);
+
+        if(cacArticleEntity != null){
+            cacArticleRepository.delete(cacArticleEntity);
+            msg.addFlashAttribute("msg", "삭제 되었습니다!");
+        }
+
+        return "redirect:/article";
+    }
 
 }
